@@ -39,7 +39,11 @@ var _ = { };
   		return array;
   	}else{
   		for(var i = array.length - 1; i >= n - 1; i--){
-  			newArray.push(array[i]);
+  			if(n === 0){
+  				return [];
+  			}else{
+  			    newArray.push(array[i]);
+  			}
   		}
   		return newArray.reverse();
   	}
