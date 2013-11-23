@@ -40,9 +40,9 @@ var _ = { };
   	}else{
   		for(var i = array.length - 1; i >= n - 1; i--){
   			if(n === 0){
-  				return [];
+  			    return [];
   			}else{
-  			    newArray.push(array[i]);
+  			   newArray.push(array[i]);
   			}
   		}
   		return newArray.reverse();
@@ -52,6 +52,9 @@ var _ = { };
   // Call iterator(value, key, collection) for each element of collection.
   // Accepts both arrays and objects.
   _.each = function(collection, iterator) {
+  	for (var key in collection){
+   	  iterator(collection[key], key, collection);
+   }
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
