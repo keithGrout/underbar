@@ -19,6 +19,8 @@ var _ = { };
   	var newArray = [];
   	if(n === undefined){
   		return array[0];
+  	}else if(n > array.length){
+  		return array;
   	}else{
   		for(var i = 0; i < n; i++){
   			newArray[i] = array[i];
