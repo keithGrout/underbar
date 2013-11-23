@@ -32,6 +32,17 @@ var _ = { };
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
+  	var newArray = [];
+  	if(n === undefined){
+  		return array.pop();
+  	}else if(n > array.length){
+  		return array;
+  	}else{
+  		for(var i = array.length - 1; i >= n - 1; i--){
+  			newArray.push(array[i]);
+  		}
+  		return newArray.reverse();
+  	}
   };
 
   // Call iterator(value, key, collection) for each element of collection.
