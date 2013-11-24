@@ -70,16 +70,18 @@ var _ = { };
     // TIP: Here's an example of a function that needs to iterate, which we've
     // implemented for you. Instead of using a standard `for` loop, though,
     // it uses the iteration helper `each`, which you will need to write.
-    
     var key = -1;
-    
-    _.each(array, function(value, index, collection){
+    var flag = 0;
+    _.each(array, function (value, index, collection){
     		if(value === target){
+    		flag++;
+    		if(flag === 1)
     			key = index;
     		}
+			
     	})
     	
-    return key;
+    	return key;
     
     };
     
