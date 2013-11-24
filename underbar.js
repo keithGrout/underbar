@@ -115,7 +115,26 @@ var _ = { };
   };
 
   // Produce a duplicate-free version of the array.
-  _.uniq = function(array) {
+_.uniq = function(array) {
+  var dupeFree = [];
+  dupeFree.push(array[0]);
+  
+  _.each(array, function(value, index, collection)
+  	 {
+  	   var flag = 0;
+
+  		for(var i = 0; i < dupeFree.length; i++)
+  		{
+  			if(value === dupeFree[i]){
+               flag++;
+            }
+  		}
+  		 if(flag === 0){
+          	dupeFree.push(value);
+  	 	}
+    	});
+
+    return dupeFree;
   };
 
 
