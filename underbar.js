@@ -176,12 +176,13 @@ _.uniq = function(array) {
   // Calls the method named by methodName on each value in the list.
  
   _.invoke = function(list, methodName, args) {
-  
-  	
-  	
-  	return _.map(list, function(value){
-  	
-  		return value[methodName].apply(value);
+    
+  	var isFunction = typeof methodName === 'function';
+
+    return _.map(list, function(value){
+  	// value is the actual value of each item in list (per _.each_)
+    // in this case, each value is an array (since list is an array of arrays)
+    return(isFunction ? methodName : value[methodName]).apply(value);
   		
   	});
   };
