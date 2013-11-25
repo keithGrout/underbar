@@ -159,17 +159,31 @@ _.uniq = function(array) {
   // Takes an array of objects and returns and array of the values of
   // a certain property in it. E.g. take an array of people and return
   // an array of just their ages
+  
+  // var people = [
+  //  {name : 'moe', age : 30},
+  //    {name : 'curly', age : 50}  ];
   _.pluck = function(array, propertyName) {
     // TIP: map is really handy when you want to transform an array of
     // values into a new array of values. _.pluck() is solved for you
     // as an example of this.
+
     return _.map(array, function(value){
       return value[propertyName];
     });
   };
 
   // Calls the method named by methodName on each value in the list.
+ 
   _.invoke = function(list, methodName, args) {
+  
+  	
+  	
+  	return _.map(list, function(value){
+  	
+  		return value[methodName].apply(value);
+  		
+  	});
   };
 
   // Reduces an array or object to a single value by repetitively calling
