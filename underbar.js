@@ -228,10 +228,26 @@ _.uniq = function(array) {
   };
 
 
-  // Determine whether all of the elements match a truth test.
+// Determine whether all of the elements match a truth test.
+ // try using reduce
   _.every = function(collection, iterator) {
-    // TIP: Try re-using reduce() here.
+  	var truth = true;
+  	if(!iterator){
+  		_.each(collection, function(value, index, collection){
+  		  truth = (value && truth); 
+  		})
+    if (truth === undefined) return false ;
+    else return truth;
+  	}else{
+    truth = _.reduce(collection, function(testResults, item){
+    	return testResults = iterator(item) && testResults;
+    }, true)
+    if (truth === 0) return false ;
+    else return truth;
+    }
   };
+
+
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
