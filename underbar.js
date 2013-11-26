@@ -236,13 +236,13 @@ _.uniq = function(array) {
   		_.each(collection, function(value, index, collection){
   		  truth = (value && truth); 
   		})
-    if (truth === undefined) return false ;
+    if (truth !== true) return false ;
     else return truth;
   	}else{
     truth = _.reduce(collection, function(testResults, item){
     	return testResults = iterator(item) && testResults;
     }, true)
-    if (truth === 0) return false ;
+    if (truth !== true) return false ;
     else return truth;
     }
   };
