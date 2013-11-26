@@ -200,7 +200,19 @@ _.uniq = function(array) {
   //     return total + number;
   //   }, 0); // should be 6
   //
-  _.reduce = function(collection, iterator, initialValue) {
+    _.reduce = function(collection, iterator, initialValue) {
+		
+	if(!initialValue){
+		previousValue = 0;
+	}else{
+    var previousValue = initialValue;
+    }
+    _.each(collection, function(value, index, collection){
+      
+    	previousValue = iterator(previousValue, value);
+      	
+    })
+    return previousValue;
   };
 
   // Determine if the array or object contains a given value (using `===`).
