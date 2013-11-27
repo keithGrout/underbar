@@ -233,13 +233,16 @@ _.uniq = function(array) {
   _.every = function(collection, iterator) {
   	var truth = true;
   	if(!iterator){
-  		_.each(collection, function(value, index, collection){
-  		  truth = (value && truth); 
-  		})
-    if (truth !== true) return false ;
-    else return truth;
+       _.each(collection, function(value, index, collection){
+       truth = (value && truth); 
+  	   })
+       if (truth !== true){
+          return false ;
+       }else {
+    	  return truth;
+       }
   	}else{
-    truth = _.reduce(collection, function(testResults, item){
+   	 truth = _.reduce(collection, function(testResults, item){
     	return testResults = iterator(item) && testResults;
     }, true)
     if (truth !== true) return false ;
@@ -251,8 +254,43 @@ _.uniq = function(array) {
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
-  _.some = function(collection, iterator) {
+    _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    
+    // determine whether any of the elements pass a truth test.
+    // get each element, compare it to a truth test
+    // if any element passes, the some function should return true
+    // *** compare each element to true
+    // *** if any element is true and _.every returns false
+    // *** then _.some should return true
+    
+    var flag = 0;
+    var every = _.every(collection, iterator);
+    
+    
+    _.each(collection, function(value, index, collection){
+    
+        if(value === true)
+            flag++;
+        if(value === ('yes' || 'true') )
+            flag++;
+        if(iterator){
+        	if(iterator(value) === true )
+            	flag++;
+       	   
+       	 }
+        
+      
+    
+    })
+    if( (collection.length > 0) && every){
+        return every;
+    }else if( (flag ) && (!every) )
+        return Boolean(true);
+    else 
+    	return Boolean (false);
+        
+    
   };
 
 
