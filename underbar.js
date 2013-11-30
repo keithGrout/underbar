@@ -279,9 +279,6 @@ _.uniq = function(array) {
             	flag++;
        	   
        	 }
-        
-      
-    
     })
     if( (collection.length > 0) && every){
         return every;
@@ -312,7 +309,27 @@ _.uniq = function(array) {
   //   }, {
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
-  _.extend = function(obj) {
+  _.extend = function(obj, obj2, obj3) {
+  
+     // takes an object, and extends it with all the properties of other passed in objects.
+     // argument length unknown, so we can use keyword 'arguments' to get a list of everything passed in
+     // we can go through each property in every passed in object and add it to the original object  
+     var args = arguments;
+     console.log(args.length);
+     console.log(args);
+     // for each object, we can assign each object's properties to the original object
+     for(var i = 1; i < args.length; i++)
+     {
+       for(var prop in args[i])
+       {
+         obj[prop] = args[i][prop];
+       }
+       
+     }
+     
+     return obj;
+  
+  
   };
 
   // Like extend, but doesn't ever overwrite a key that already
