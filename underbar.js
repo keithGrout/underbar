@@ -311,12 +311,7 @@ _.uniq = function(array) {
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj, obj2, obj3) {
   
-     // takes an object, and extends it with all the properties of other passed in objects.
-     // argument length unknown, so we can use keyword 'arguments' to get a list of everything passed in
-     // we can go through each property in every passed in object and add it to the original object  
      var args = arguments;
-     console.log(args.length);
-     console.log(args);
      // for each object, we can assign each object's properties to the original object
      for(var i = 1; i < args.length; i++)
      {
@@ -333,15 +328,32 @@ _.uniq = function(array) {
   };
 
   // Like extend, but doesn't ever overwrite a key that already
-  // exists in obj
+  // exists in obj  beforeEach(function() {
+  // options = {zero: 0, one: 1, empty: "", nan: NaN, string: "string"};
+  // _.defaults(options, {zero: 1, one: 10, twenty: 20}, {empty: "full"}, {nan: "nan"}, {word: "word"}, {word: "dog"});
+  // });
+  // don't overwrite a key that already exists
   _.defaults = function(obj) {
+    var args = arguments;
+     // for each object, we can assign each object's properties to the original object
+     for( var i = 1; i < args.length; i++)
+     {
+       for(var prop in args[i])
+       {
+         if(obj.hasOwnProperty(prop))
+           obj[prop] = obj[prop];
+         else
+           obj[prop] = args[i][prop];
+       }
+      }
+    
   };
 
 
   /**
    * FUNCTIONS
    * =========
-   *
+   
    * Now we're getting into function decorators, which take in any function
    * and return out a new version of the function that works somewhat differently
    */
