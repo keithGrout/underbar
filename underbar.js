@@ -425,8 +425,10 @@ _.uniq = function(array) {
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
-  };
-
+   var args = Array.prototype.slice.call(arguments, 2);
+   return setTimeout(function(){return func.apply(this, args);}, wait);
+   
+    };
 
   /**
    * ADVANCED COLLECTION OPERATIONS
@@ -435,6 +437,36 @@ _.uniq = function(array) {
 
   // Shuffle an array.
   _.shuffle = function(array) {
+  
+  // get the length of the array
+  // call a random number from 0 to length of array - 1 (this is the index we can store each array element)
+  // we will put each element in a random spot in the new array, as long as something is not already there
+  
+  var shuffled = [];
+  var lengthOfOriginalArray = array.length;
+  var randomIndex;
+
+  var getRandomIndex = function(){
+    return Math.floor(Math.random() * ( (array.length - 1) - 0 + 1) + 0 );
+  };
+
+  var setFalse = function(arr){
+    for(var i = 0; i < lengthOfOriginalArray; i++ )
+      arr[i] = false;
+  };
+  
+  setFalse(shuffled);
+  
+  for(var i = 0; i < lengthOfOriginalArray - 1; i++){
+    // get random index
+    randomIndex = getRandomIndex();
+    if(shuffled[randomIndex] === false){
+      shuffled[randomIndex] = array[i];
+    }else i--;
+  } 
+  
+  return shuffled;
+  
   };
 
 
