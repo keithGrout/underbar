@@ -356,6 +356,22 @@ _.uniq = function(array) {
    
    * Now we're getting into function decorators, which take in any function
    * and return out a new version of the function that works somewhat differently
+   
+   _.once = function (func){
+     var alreadyCalled = false;
+     var result;
+     
+     return function(){
+       if(!alreadyCalled){
+         result = func.apply(this, arguments);
+         alreadyCalled =  true;
+       }
+       return result;
+     };
+     
+   };
+
+   
    */
 
   // Return a function that can be called at most one time. Subsequent calls
@@ -380,6 +396,7 @@ _.uniq = function(array) {
     };
   };
 
+  
   // Memoize an expensive function by storing its results. You may assume
   // that the function takes only one argument and that it is a primitive.
   //
@@ -387,6 +404,18 @@ _.uniq = function(array) {
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    
+    return function(){
+      
+      var results = false;
+
+      if(!results){
+        results = func.apply(this, arguments);
+        return results;
+        }
+      else
+        return results;
+    }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
